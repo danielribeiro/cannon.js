@@ -5,7 +5,7 @@
  var PointerLockControls = function ( camera, cannonBody ) {
 
     var eyeYPos = 2; // eyes are 2 meters above the ground
-    var velocityFactor = 0.2;
+    var velocityFactor = 6;
     var jumpVelocity = 20;
     var scope = this;
 
@@ -165,9 +165,12 @@
         quat.multiplyVector3(inputVelocity);
 
         // Add to the object
-        velocity.x += inputVelocity.x;
-        velocity.z += inputVelocity.z;
+        velocity.x = inputVelocity.x;
+        velocity.z = inputVelocity.z;
 
+        var v = velocity;
+        var l = function(val) { return Math.round(val*100)/100; }
+        console.log("velocity is", l(v.x), l(v.y), l(v.z))
         cannonBody.position.copy(yawObject.position);
     };
 };

@@ -204,7 +204,8 @@
                 // Create a sphere
                 var mass = 5, radius = 1.3;
                 // sphereShape = new CANNON.Sphere(radius);
-                sphereShape = new CANNON.Box(new CANNON.Vec3(0.5,0.5,0.5))
+                var side = 1;
+                sphereShape = new CANNON.Box(new CANNON.Vec3(side, side, side))
                 sphereBody = new CANNON.RigidBody(mass,sphereShape,physicsMaterial);
                 sphereBody.position.set(0,5,0);
                 sphereBody.linearDamping = 0.9;
@@ -395,9 +396,9 @@
                                             shootDirection.z * shootVelo);
 
                     // Move the ball outside the player sphere
-                    x += shootDirection.x * (sphereShape.radius*1.02 + ballShape.radius);
-                    y += shootDirection.y * (sphereShape.radius*1.02 + ballShape.radius);
-                    z += shootDirection.z * (sphereShape.radius*1.02 + ballShape.radius);
+                    x += shootDirection.x * (2.02);
+                    y += shootDirection.y * (2.02);
+                    z += shootDirection.z * (2.02);
                     ballBody.position.set(x,y,z);
                     ballMesh.position.set(x,y,z);
                     ballMesh.useQuaternion = true;
