@@ -24,6 +24,7 @@
     var moveRight = false;
 
     var canJump = false;
+    var jumpsCount = 0;
 
     var contactNormal = new CANNON.Vec3(); // Normal in the contact, pointing *out* of whatever the player touched
     var upAxis = new CANNON.Vec3(0,1,0);
@@ -41,6 +42,7 @@
         // If contactNormal.dot(upAxis) is between 0 and 1, we know that the contact normal is somewhat in the up direction.
         if(contactNormal.dot(upAxis) > 0.5) // Use a "good" threshold value between 0 and 1 here!
             canJump = true;
+            jumpsCount = 0;
     });
 
     var velocity = cannonBody.velocity;
@@ -84,8 +86,9 @@
                 break;
 
             case 32: // space
-                if ( canJump === true ){
+                if ( canJump === true || jumpsCount < 3 ){
                     velocity.y = jumpVelocity;
+                    jumpsCount++;
                 }
                 canJump = false;
                 break;
