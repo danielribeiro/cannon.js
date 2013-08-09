@@ -28,6 +28,7 @@
     var contactNormal = new CANNON.Vec3(); // Normal in the contact, pointing *out* of whatever the player touched
     var upAxis = new CANNON.Vec3(0,1,0);
     cannonBody.addEventListener("collide",function(e){
+        console.log("colliding...")
         var contact = e.contact;
 
         // contact.bi and contact.bj are the colliding bodies, and contact.ni is the collision normal.
