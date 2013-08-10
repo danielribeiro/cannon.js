@@ -257,7 +257,7 @@
                 geometry.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) );
 
                 material = new THREE.MeshLambertMaterial( { color: 0xdddddd } );
-                 material.color.offsetHSL(0, 0, 0.9 );
+                material.color.offsetHSL(0, 0, 0.9 );
 
                 mesh = new THREE.Mesh( geometry, material );
                 mesh.castShadow = true;
@@ -369,7 +369,7 @@
                 var vector = targetVec;
                 targetVec.set(0,0,1);
                 projector.unprojectVector(vector, camera);
-                var ray = new THREE.Ray(sphereBody.position, vector.subSelf(sphereBody.position).normalize() );
+                var ray = new THREE.Ray(sphereBody.position, vector.sub(sphereBody.position).normalize() );
                 targetVec.x = ray.direction.x;
                 targetVec.y = ray.direction.y;
                 targetVec.z = ray.direction.z;
