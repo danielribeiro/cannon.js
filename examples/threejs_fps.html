@@ -73,7 +73,7 @@
         </div>
 
         <script>
-
+            window.tr = THREE;
             var sphereShape, sphereBody, world, physicsMaterial, walls=[], balls=[], ballMeshes=[], boxes=[], boxMeshes=[];
 
             var camera, scene, renderer;
@@ -257,7 +257,7 @@
                 geometry.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) );
 
                 material = new THREE.MeshLambertMaterial( { color: 0xdddddd } );
-                THREE.ColorUtils.adjustHSV( material.color, 0, 0, 0.9 );
+                 material.color.offsetHSL(0, 0, 0.9 );
 
                 mesh = new THREE.Mesh( geometry, material );
                 mesh.castShadow = true;
@@ -290,7 +290,6 @@
                     boxMesh.position.set(x,y,z);
                     boxMesh.castShadow = true;
                     boxMesh.receiveShadow = true;
-                    boxMesh.useQuaternion = true;
                     boxes.push(boxBody);
                     boxMeshes.push(boxMesh);
                 }
@@ -310,7 +309,6 @@
                     boxbody.position.set(5,(N-i)*(size*2+2*space) + size*2+space,0);
                     boxbody.linearDamping=0.01;
                     boxbody.angularDamping=0.01;
-                    boxMesh.useQuaternion = true;
                     boxMesh.castShadow = true;
                     boxMesh.receiveShadow = true;
                     world.add(boxbody);
@@ -401,7 +399,6 @@
                     z += shootDirection.z * (2.02);
                     ballBody.position.set(x,y,z);
                     ballMesh.position.set(x,y,z);
-                    ballMesh.useQuaternion = true;
                 }
             });
 

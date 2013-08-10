@@ -134,11 +134,6 @@
         return yawObject;
     };
 
-    this.getDirection = function(targetVec){
-        targetVec.set(0,0,-1);
-        quat.multiplyVector3(targetVec);
-    }
-
     // Moves the camera to the Cannon.js object position and adds velocity to the object if the run key is down
     var inputVelocity = new THREE.Vector3();
     this.update = function ( delta ) {
@@ -163,9 +158,10 @@
             inputVelocity.x = velocityFactor * delta;
         }
 
+        var rot = yawObject.rotation
         // Convert velocity to world coordinates
-        quat.setFromEuler({x:pitchObject.rotation.x, y:yawObject.rotation.y, z:0},"XYZ");
-        quat.multiplyVector3(inputVelocity);
+        quat.setFromEuler(new THREE.Euler(rot.x, rot.y, rot.z), true);
+        inputVelocity.applyQuaternion(quat);
 
         // Add to the object
         velocity.x = inputVelocity.x;
